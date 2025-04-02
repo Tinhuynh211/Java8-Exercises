@@ -16,11 +16,11 @@ interface Shape {
 
     double area(int a);
 
-    double area(int a, int b, int c);
+    double area(int a, int b);
 
     double perimeter(int a);
 
-    double perimeter(int a, int b, int c);
+    double perimeter(int a, int b);
 }
 
 class Circle implements Shape {
@@ -41,21 +41,21 @@ class Circle implements Shape {
     }
 
     @Override
-    public double area(int a, int b, int c) {
+    public double area(int a, int b) {
         return 0;
     }
 
     @Override
-    public double perimeter(int a, int b, int c) {
+    public double perimeter(int a, int b) {
         return 0;
     }
 }
 
-class Triangle implements Shape {
+class Rectangle implements Shape {
 
     @Override
     public void description() {
-        System.out.println("Day la hinh tam giac");
+        System.out.println("Day la hinh chu nhat");
     }
 
     @Override
@@ -64,19 +64,18 @@ class Triangle implements Shape {
     }
 
     @Override
-    public double area(int a, int b, int c) {
-        double s = (a + b + c) / 2.0;
-        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
-    }
-
-    @Override
     public double perimeter(int a) {
         return 0;
     }
 
     @Override
-    public double perimeter(int a, int b, int c) {
-        return a + b + c;
+    public double area(int a, int b) {
+        return a * b;
+    }
+
+    @Override
+    public double perimeter(int a, int b) {
+        return (a + b) * 2;
     }
 }
 
@@ -85,7 +84,7 @@ public class S {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Shape circle = new Circle();
-        
+
         circle.description();
         System.out.print("Input r: ");
         int r = scanner.nextInt();
@@ -95,34 +94,29 @@ public class S {
         int[] triangleSides = inputTriangleSides(scanner);
         int canh1 = triangleSides[0];
         int canh2 = triangleSides[1];
-        int canh3 = triangleSides[2];
 
-        Shape triangle = new Triangle();
-        triangle.description();
-        System.out.println("Area of triangle: " + triangle.area(canh1, canh2, canh3));
-        System.out.println("Perimeter of triangle: " + triangle.perimeter(canh1, canh2, canh3));
+        Shape rectangle = new Rectangle();
+        rectangle.description();
+        System.out.println("Area of rectangle: " + rectangle.area(canh1, canh2));
+        System.out.println("Perimeter of rectangle: " + rectangle.perimeter(canh1, canh2));
     }
 
     public static int[] inputTriangleSides(Scanner scanner) {
-        int canh1, canh2, canh3;
+        int canh1, canh2;
         while (true) {
-            System.out.print("Input canh 1 cua tam giac: ");
+            System.out.print("Input chieu dai: ");
             canh1 = scanner.nextInt();
-            System.out.print("Input canh 2 cua tam giac: ");
+            System.out.print("Input chieu rong: ");
             canh2 = scanner.nextInt();
-            System.out.print("Input canh 3 cua tam giac: ");
-            canh3 = scanner.nextInt();
 
-            if ((canh1 + canh2 <= canh3) || (canh2 + canh3 <= canh1) || (canh1 + canh3 <= canh2)) {
-                System.out.println("Wrong Input. Please input again.");
+            if (canh2 > canh1) {
+                System.out.println("Chieu dai khong the be hon chieu rong");
+            } else if (canh2 == canh1) {
+                System.out.println("Chieu dai bang chieu rong (hinh vuong)");
             } else {
-                break;  
+                break;
             }
         }
-        return new int[] {canh1, canh2, canh3};  
+        return new int[]{canh1, canh2};
     }
 }
-
-    
-
-
