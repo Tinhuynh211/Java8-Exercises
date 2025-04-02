@@ -91,7 +91,7 @@ public class S {
         System.out.println("Area of circle: " + circle.area(r));
         System.out.println("Perimeter of circle: " + circle.perimeter(r));
 
-        int[] triangleSides = inputTriangleSides(scanner);
+        int[] triangleSides = inputRectangleSides(scanner);
         int canh1 = triangleSides[0];
         int canh2 = triangleSides[1];
 
@@ -101,7 +101,7 @@ public class S {
         System.out.println("Perimeter of rectangle: " + rectangle.perimeter(canh1, canh2));
     }
 
-    public static int[] inputTriangleSides(Scanner scanner) {
+    public static int[] inputRectangleSides(Scanner scanner) {
         int canh1, canh2;
         while (true) {
             System.out.print("Input chieu dai: ");
